@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Functional.CSharp.Tests/Functional.CSharp.Tests.csproj" Id="919b3333-f073-4348-b50a-bd39e2872550" />
+  </Folder>
+  <Project Path="Functional.CSharp/Functional.CSharp.csproj" Id="91e9fa21-3427-4be3-ae9b-35e62c8bf293" />
+</Solution>
