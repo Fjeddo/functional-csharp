@@ -4,7 +4,7 @@ public abstract class Result<T>
 {
     public abstract TOut Match<TOut>(Func<T, TOut> onSuccess, Func<Error, TOut> onFailure);
 
-    private class ResultOk<TValue>(TValue value) : Result<TValue>
+    private class ResultSuccess<TValue>(TValue value) : Result<TValue>
     {
         public override TOut Match<TOut>(Func<TValue, TOut> onSuccess, Func<Error, TOut> onFailure) 
             => onSuccess(value);
@@ -16,7 +16,7 @@ public abstract class Result<T>
             => onFailure(error);
     }
 
-    public static Result<T> Success(T value) => new ResultOk<T>(value);
+    public static Result<T> Success(T value) => new ResultSuccess<T>(value);
     public static Result<T> Failure(Error error) => new ResultFailure<T>(error);
 }
 
