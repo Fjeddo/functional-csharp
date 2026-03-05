@@ -16,7 +16,11 @@ public abstract class Result<T>
             => onFailure(error);
     }
 
-    public static Result<T> Success(T value) => new ResultSuccess<T>(value);
+    public static Result<T> Success(T value) 
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        return new ResultSuccess<T>(value);
+    }
     public static Result<T> Failure(Error error) => new ResultFailure<T>(error);
 }
 
