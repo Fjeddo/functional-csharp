@@ -21,7 +21,12 @@ public abstract class Result<T>
         ArgumentNullException.ThrowIfNull(value);
         return new ResultSuccess<T>(value);
     }
-    public static Result<T> Failure(Error error) => new ResultFailure<T>(error);
+
+    public static Result<T> Failure(Error error)
+    {
+        ArgumentNullException.ThrowIfNull(error);
+        return new ResultFailure<T>(error);
+    }
 }
 
 public static class Result
