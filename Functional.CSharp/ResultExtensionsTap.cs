@@ -1,6 +1,6 @@
 ﻿namespace Functional.CSharp;
 
-public static class ResultExtensionsTapOverloads 
+public static class ResultExtensionsTap
 {
     extension<T>(Result<T> result)
     {

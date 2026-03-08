@@ -1,6 +1,6 @@
 ﻿namespace Functional.CSharp;
 
-public static class ResultExtensionsBindOverloads
+public static class ResultExtensionsBind
 {
     extension<T>(Result<T> result)
     {

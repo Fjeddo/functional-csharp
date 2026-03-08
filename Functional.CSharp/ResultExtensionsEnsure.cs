@@ -1,6 +1,6 @@
 ﻿namespace Functional.CSharp;
 
-public static class ResultExtensionsEnsureOverloads
+public static class ResultExtensionsEnsure
 {
     extension<T>(Result<T> result)
     {

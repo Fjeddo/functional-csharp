@@ -2,18 +2,33 @@
 
 public abstract class Result<T>
 {
+    private readonly Error _error;
+    private readonly T _value;
+
+    protected Result(T value) 
+        : this(value, null!) {}
+
+    protected Result(Error error) 
+        : this(default!, error) {}
+
+    private Result(T value, Error error)
+    {
+        _value = value;
+        _error = error;
+    }
+    
     public abstract TOut Match<TOut>(Func<T, TOut> onSuccess, Func<Error, TOut> onFailure);
 
-    private class ResultSuccess<TValue>(TValue value) : Result<TValue>
+    private class ResultSuccess<TValue>(TValue value) : Result<TValue>(value)
     {
         public override TOut Match<TOut>(Func<TValue, TOut> onSuccess, Func<Error, TOut> onFailure) 
-            => onSuccess(value);
+            => onSuccess(_value);
     }
 
-    private class ResultFailure<TValue>(Error error) : Result<TValue>
+    private class ResultFailure<TValue>(Error error) : Result<TValue>(error)
     {
         public override TOut Match<TOut>(Func<TValue, TOut> onSuccess, Func<Error, TOut> onFailure) 
-            => onFailure(error);
+            => onFailure(_error);
     }
 
     public static Result<T> Success(T value) 
