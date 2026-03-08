@@ -143,5 +143,29 @@ public class ResultMapAsyncTests
             });
     }
 
+    [TestMethod]
+    public async Task Should_chain_multiple_maps_async3()
+    {
+        var sut = Result.Success(5);
+
+        var result = await sut
+            .MapAsync(x => Task.FromResult(x * 2))
+            .MapAsync(x => x + 3)
+            .MapAsync(x => x + 4)
+            .MapAsync(x => Task.FromResult(x.ToString()));
+
+        result.Match(
+            onSuccess: value =>
+            {
+                Assert.AreEqual("17", value);
+                return value;
+            },
+            onFailure: _ =>
+            {
+                Assert.Fail("Expected success, but got failure.");
+                return string.Empty;
+            });
+    }
+
     public record TestError(string Message) : Error(1, Message);
 }

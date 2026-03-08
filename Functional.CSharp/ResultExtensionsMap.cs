@@ -23,5 +23,11 @@ public static class ResultExtensionsMap
             var result = await resultTask.ConfigureAwait(false);
             return await result.MapAsync(mapper).ConfigureAwait(false);
         }
+
+        public async Task<Result<TOut>> MapAsync<TOut>(Func<T, TOut> mapper)
+        {
+            var result = await resultTask.ConfigureAwait(false);
+            return result.Map(mapper);
+        }
     }
 }
